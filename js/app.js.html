@@ -1,0 +1,76 @@
+<script>
+    var btnImage = document.getElementById('image');
+    var btnSubmit = document.getElementById('submit');
+    var iptCode = document.getElementById('code');
+    var ltAction = document.getElementById('action');
+    var ltResult = document.getElementById('result');
+    var imgPreview = document.getElementById('preview');
+    imgPreview.src = plaseholderImgUrl;
+    btnSubmit.disabled = true;
+    btnImage.disabled = false;
+    var progress = document.getElementById('progress');
+  
+    var frm = document.getElementById('form');
+    if (frm.addEventListener) frm.addEventListener('submit', submit, false);
+  
+    function submit(event) {
+      btnImage.disabled = true;
+      event.preventDefault();
+      btnSubmit.disabled = true;
+      progress.style.display = 'block';
+      google.script.run
+        .withSuccessHandler(onSuccess)
+        .withFailureHandler(onFailure)
+        .uploadFiles(document.getElementById('base64').value);
+    }
+  
+    function onSuccess(status) {
+      iptCode.value = status;
+      frm.reset();
+      btnSubmit.disabled = true;
+      progress.style.display = 'none';
+      btnImage.disabled = false;
+      ltAction.style.display = 'none';
+      ltResult.style.display = 'block';
+    }
+  
+    function onFailure(e) {
+      progress.style.display = 'none';
+      btnImage.disabled = false;
+    }
+  
+    function userActionHandleFile(image) {
+      file = image.files[0];
+      if (!file.type.startsWith('image/')) {
+        image.value = '';
+        btnSubmit.disabled = true;
+        btnImage.disabled = false;
+        return;
+      }
+      btnImage.disabled = true;
+      progress.style.display = 'block';
+      new Compressor(file, {
+        quality: 0.8,
+        maxWidth: 1000,
+        maxHeight: 1000,
+        convertSize: 1000000,
+        checkOrientation: true,
+        success(result) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+            document.getElementById('base64').value = e.target.result;
+            progress.style.display = 'none';
+            btnImage.disabled = false;
+          };
+          reader.readAsDataURL(result);
+          btnSubmit.disabled = false;
+        },
+        error(err) {
+          progress.style.display = 'none';
+          btnImage.disabled = false;
+        }
+      });
+    }
+  </script>
+  
