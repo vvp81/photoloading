@@ -4,7 +4,7 @@
 // Папка для загрузки изображений
 var PHOTO_FOLDER_ID = '1whY3dkVqiT5fCXypVNZ04wqhZGEWpyyzlfgYjmgnrGw';
 // Таблица для сохрания ID фотографий
-var PHOTO_SPREADSHEET_ID = '1QVm0L7BRxk7WBd-pPMeCYvBaqz7B82M6d6cd2K7ntpw';
+var PHOTO_SPREADSHEET_ID = '1mPsuDOiq6c3f7cIHPJImbspg437l0BxJ';
 
 /**
  *
