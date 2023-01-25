@@ -2,10 +2,9 @@
 /* exported doGet include_ */
 
 // Папка для загрузки изображений
-var PHOTO_FOLDER_ID = '1whY3dkVqiT5fCXypVNZ04wqhZGEWpyyzlfgYjmgnrGw';
+var PHOTO_FOLDER_ID = '1mPsuDOiq6c3f7cIHPJImbspg437l0BxJ';
 // Таблица для сохрания ID фотографий
-var PHOTO_SPREADSHEET_ID = '1mPsuDOiq6c3f7cIHPJImbspg437l0BxJ';
-
+var PHOTO_SPREADSHEET_ID = '1whY3dkVqiT5fCXypVNZ04wqhZGEWpyyzlfgYjmgnrGw';
 /**
  *
  * @param {GoogleAppsScript.Events.DoGet} e

@@ -1,81 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <base target="_top" />
-    <?!= include_('css/bulma.min.css.html'); ?>
-    <?!= include_('css/app.css.html'); ?>
-    <script
-      defer
-      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
-    ></script>
-  </head>
+    <head>
+        <base target="_top" />
+        <?!= include_('css/bulma.min.css.html'); ?>
+        <?!= include_('css/app.css.html'); ?>
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js">
+        </script>
+    </head>
 
-  <body>
-    <section class="section">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-narrow" id="action">
-            <div class="file">
-              <label class="file-label">
-                <input
-                  class="file-input"
-                  name="image"
-                  id="image"
-                  type="file"
-                  onchange="userActionHandleFile(this)"
-                  accept="image/x-png,image/jpeg"
-                  disabled
-                />
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="fas fa-upload"></i>
-                  </span>
-                  <span class="file-label">
-                    Выберите фото…
-                  </span>
-                </span>
-              </label>
+    <body>
+        <section class="section">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column" id="action">
+                      <div class="block">
+                        Выберите и загрузите портретную фотографию, сделанную не ранее 
+                        января 2023 года, где хорошо видно лицо поступающего.<br>
+                        Фотография должна быть в формате jpeg или png, иметь разрешение не 
+                        менее 300х300 пикселей и размер не более 10 Мб.
+                      </div>
+                      <div class="file">
+                        <label class="file-label">
+                          <input class="file-input"
+                                name="image"
+                                id="image"
+                                type="file"
+                                onchange="userActionHandleFile(this)"
+                                accept="image/x-png,image/jpeg"
+                                disabled />
+                          <span class="file-cta">
+                              <span class="file-icon">
+                                  <i class="fas fa-upload"></i>
+                              </span>
+                              <span class="file-label">
+                                  Выберите фото…
+                              </span>
+                          </span>
+                        </label>
+                        <form id="form">
+                            <input id="base64" name="base64" hidden />
+                            <input
+                                type="submit"
+                                id="submit"
+                                class="button is-primary"
+                                value="Загрузить"
+                            />
+                        </form>
+                      </div>
+                      <div id="progress">
+                        <progress class="progress is-small is-info" max="100"></progress>
+                      </div>
+                      <figure class="image is-square" id="figphoto">
+                        <img id="preview" src="" />
+                      </figure>
+                    </div>
+                    <div class="column is-narrow" id="result">
+                        <h2 class="has-text-center">Скопируйте код фотографии и вставьте его в поле анкеты</h2>
+                        <div class="field">
+                            <div class="control">
+                                <input
+                                    id="code"
+                                    class="input is-large"
+                                    type="text"
+                                    readonly
+                                    onClick="this.setSelectionRange(0, this.value.length)"
+                                />
+                            </div>
+                        </div>
+                    </div> 
+                </div>
             </div>
-            <form id="form">
-              <input id="base64" name="base64" hidden />
-              <!-- <p class="help">
-                Размер файла не должен превышать 10 Мб
-              </p> -->
-              <div class="control">
-                <input
-                  type="submit"
-                  id="submit"
-                  class="button is-primary"
-                  value="Загрузить"
-                />
-              </div>
-            </form>
-            <div id="progress">
-              <progress class="progress is-small is-info" max="100"></progress>
-            </div>
-            <figure class="image is-square" id="figphoto">
-                <img id="preview" src="" />
-            </figure>
-          </div>
-          <div class="column is-narrow" id="result">
-            <h2 class="has-text-centere">Сохраните код</h2>
-            <div class="field">
-              <div class="control">
-                <input
-                  id="code"
-                  class="input is-large"
-                  type="text"
-                  readonly
-                  onClick="this.setSelectionRange(0, this.value.length)"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <?!= include_('js/placeholder.js.html'); ?>
-    <?!= include_('js/app.js.html'); ?>
-    <?!= include_('js/compressor.js.html'); ?>
-  </body>
+        </section>
+        <?!= include_('js/placeholder.js.html'); ?>
+        <?!= include_('js/app.js.html'); ?>
+        <?!= include_('js/compressor.js.html'); ?>
+    </body>
 </html>
